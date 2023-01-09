@@ -1,0 +1,132 @@
+﻿
+@using Website_Clothes.Models
+@{
+    Layout = null;
+    LOGIN  lg = Session["lg"] as LOGIN;
+
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LayoutMain</title>
+    <!--Bootstrap 4-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+
+    <div class="container-fluid" style="background-color:#3D8361">
+        <div class="row">
+            <div class="col-lg-3 " style="background-color: #3D8361">
+                <a href="@Url.Action("Index","Category")">
+                    <img src="~/Picture/logostore.jpg" height="90px" width="120px" style="float:left" />
+                    <p style="float:left; font-size:15px; font-weight:700;text-align:center; margin-top:20px; color:black">
+                        ONE HEART <br />
+                        ONLY ONE EARTH
+                    </p>
+                </a>
+            </div>
+
+            <div class="col-lg-1" style="background-color: #3D8361">
+                <img src="~/Picture/tải_xuống__1_-removebg-preview.jpg" height="30px" width="30px" style="float:left; margin-top:20px" />
+                <p style="float:left; font-size:10px; font-weight:500;text-align:center; margin-top:20px">
+                    Deliver to <br />
+                    Viet Nam
+                </p>
+            </div>
+
+            <div class="col-lg-5 " style="background-color: #3D8361">
+                <form action="~/Category/InforShop" method="get">
+                    <input type="text" size="50" style="border: 3px solid #ddb3b3; border-radius: 20px; margin-top: 20px" id="sreach" name="sreach" />
+                    <input type="submit" size="10" style="margin-left: 10px; padding: 5px; margin-top: 20px" value="Lọc" />
+                </form>
+                @Html.Action("DanhMucTT", "Category")
+
+            </div>
+
+
+            <div class="col-lg " style="background-color: #3D8361">
+                @if (lg == null)
+                {
+                    <a href="~/Account/DangNhap" style="color:white">
+                        <img src="~/Picture/5df39a6672dbb485edca-removebg-preview.jpg" height="40px" width="40px" style="float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center; margin-top:23px">
+                            Hello, Sign inb<br />Account
+                        </p>
+                    </a>
+
+                    <a href="~/Account/DangNhap" style="color:white">
+                        <img src="~/Picture/download-removebg-preview.jpg" height="30px" width="30px" style="margin-left:30px;float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center;margin-left:10px; margin-top:29px">
+                            Cart
+                        </p>
+                    </a>
+                }
+                else if (lg.VaiTro == "buyer")
+                {
+                    <a href="~/Account/PersonalPage">
+                        <img src="@Url.Content("~/Picture/" + lg.AVT)" height="50px" width="50px" style="float:left; margin-top:20px; border-radius:50%" />
+                        <p style="float:left; font-size:15px; font-weight:500;text-align:center; margin-top:27px">
+                            Hello,<br />@lg.TenLogin
+                        </p>
+                    </a>
+                    <a href="@Url.Action("PersonalCart","GioHang")" style="color:white">
+                        <img src="~/Picture/download-removebg-preview.jpg" height="30px" width="30px" style="margin-left:30px;float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center;margin-left:10px; margin-top:29px">
+                            Cart <span style="height: 30px; width: 30px; border-radius: 10%; padding: 5px; background-color: orangered"> @Html.Action("TongSL", "GioHang")</span>
+                        </p>
+                    </a>
+                    <a href="@Url.Action("DangNhap","Account")"><img height="20px" width="20px" style="margin-top:25px" src="~/Picture/dan.png" /></a>
+
+                }
+                else if (lg.VaiTro == "seller")
+                {
+                    <a href="~/Account/PersonalPage">
+                        <img src="@Url.Content("~/Picture/" + lg.AVT)" height="50px" width="50px" style="float:left; margin-top:20px; border-radius:50%" />
+                        <p style="color:white;float:left; font-size:15px; font-weight:500;text-align:center; margin-top:27px">
+                            Shop,<br />@lg.TenLogin
+                        </p>
+                    </a>
+                    <a href="@Url.Action("ThongBaoDonHang","MyShop")" style="color:white">
+                        <img src="~/Picture/download-removebg-preview (3).png" height="30px" width="30px" style="margin-left:30px;float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center;margin-left:10px; margin-top:29px">
+                            Thông báo <span style="height: 30px; width: 30px; border-radius: 10%; padding: 5px; background-color: orangered">@Html.Action("TongTB", "MyShop") </span>
+                        </p>
+                    </a>
+                    <a href="@Url.Action("DangNhap","Account")"><img height="20px" width="20px" style="margin-top:25px" src="~/Picture/dan.png" /></a>
+                }
+
+            </div>
+        </div>
+
+    </div>
+    <br />
+
+
+
+    <div class="container">
+        <div class="row">
+            @Html.Action("Brand1", "Category")<br />
+
+
+            <div class="col-lg">
+
+                @RenderSection("inforshop", true)
+            </div>
+
+        </div>
+    </div>
+
+
+
+    @RenderBody()
+
+
+</body>
+</html>

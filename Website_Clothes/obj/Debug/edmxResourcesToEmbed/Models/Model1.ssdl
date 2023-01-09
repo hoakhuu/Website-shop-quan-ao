@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QUANLY_QUANAOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BRAND">
+    <Key>
+      <PropertyRef Name="MaBrand" />
+    </Key>
+    <Property Name="MaBrand" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="TenBrand" Type="nvarchar" MaxLength="30" />
+    <Property Name="HinhMH" Type="varchar" MaxLength="30" />
+    <Property Name="MaSP" Type="varchar" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="BUYER">
+    <Key>
+      <PropertyRef Name="MaBuyer" />
+    </Key>
+    <Property Name="MaBuyer" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="TenBuyer" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="SDT" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DiaChi" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaLogin" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CART">
+    <Key>
+      <PropertyRef Name="MaGioHang" />
+    </Key>
+    <Property Name="ThoiGian" Type="date" Nullable="false" />
+    <Property Name="SoLuong" Type="int" Nullable="false" />
+    <Property Name="Size" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="MaGioHang" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="MaBuyer" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="MaSP" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="TenLoai" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="HinhMH" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaSP" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DELIVERY">
+    <Key>
+      <PropertyRef Name="MaThanhToan" />
+    </Key>
+    <Property Name="MaThanhToan" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="PTThanhToan" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LOGINS">
+    <Key>
+      <PropertyRef Name="MaLogin" />
+    </Key>
+    <Property Name="MaLogin" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="TenLogin" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="MatKhauLogin" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="VaiTro" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MANAGE">
+    <Key>
+      <PropertyRef Name="MaQL" />
+    </Key>
+    <Property Name="MaQL" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MESSAGE">
+    <Key>
+      <PropertyRef Name="MaQL" />
+      <PropertyRef Name="MaBuyer" />
+    </Key>
+    <Property Name="NoiDung" Type="varchar" MaxLength="5000" Nullable="false" />
+    <Property Name="ThoiGianNhan" Type="date" Nullable="false" />
+    <Property Name="MaQL" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="MaBuyer" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDER_DETAILS">
+    <Key>
+      <PropertyRef Name="MaSPChiTiet" />
+    </Key>
+    <Property Name="MaSPChiTiet" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="MaQL" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="MaGioHang" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PAYMENT_METHOD">
+    <Key>
+      <PropertyRef Name="MaThanhToan" />
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaThanhToan" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="MaSP" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="TenSP" Type="nvarchar(max)" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
+    <Property Name="Hinh1" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Hinh2" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Hinh3" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DonGia" Type="int" Nullable="false" />
+    <Property Name="TinhTrang" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="KichThuoc1" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="KichThuoc2" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="KichThuoc3" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="MaQL" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SELLER">
+    <Key>
+      <PropertyRef Name="MaSeller" />
+    </Key>
+    <Property Name="MaSeller" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="TenSeller" Type="nvarchar(max)" />
+    <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar(max)" />
+    <Property Name="MaLogin" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="MaQL" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__BRAND__MaSP__5812160E">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+    <End Role="BRAND" Type="Self.BRAND" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="BRAND">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BUYER__MaLogin__38996AB5">
+    <End Role="LOGINS" Type="Self.LOGINS" Multiplicity="1" />
+    <End Role="BUYER" Type="Self.BUYER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOGINS">
+        <PropertyRef Name="MaLogin" />
+      </Principal>
+      <Dependent Role="BUYER">
+        <PropertyRef Name="MaLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CART__MaBuyer__4CA06362">
+    <End Role="BUYER" Type="Self.BUYER" Multiplicity="1" />
+    <End Role="CART" Type="Self.CART" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BUYER">
+        <PropertyRef Name="MaBuyer" />
+      </Principal>
+      <Dependent Role="CART">
+        <PropertyRef Name="MaBuyer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CART__MaSP__4D94879B">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="CART" Type="Self.CART" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="CART">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CATEGORY__MaSP__49C3F6B7">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="CATEGORY">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MESSAGE__MaBuyer__403A8C7D">
+    <End Role="BUYER" Type="Self.BUYER" Multiplicity="1" />
+    <End Role="MESSAGE" Type="Self.MESSAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BUYER">
+        <PropertyRef Name="MaBuyer" />
+      </Principal>
+      <Dependent Role="MESSAGE">
+        <PropertyRef Name="MaBuyer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MESSAGE__MaQL__3F466844">
+    <End Role="MANAGE" Type="Self.MANAGE" Multiplicity="1" />
+    <End Role="MESSAGE" Type="Self.MESSAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MANAGE">
+        <PropertyRef Name="MaQL" />
+      </Principal>
+      <Dependent Role="MESSAGE">
+        <PropertyRef Name="MaQL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ORDER_DET__MaGio__5535A963">
+    <End Role="CART" Type="Self.CART" Multiplicity="1" />
+    <End Role="ORDER_DETAILS" Type="Self.ORDER_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CART">
+        <PropertyRef Name="MaGioHang" />
+      </Principal>
+      <Dependent Role="ORDER_DETAILS">
+        <PropertyRef Name="MaGioHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ORDER_DETA__MaQL__5441852A">
+    <End Role="MANAGE" Type="Self.MANAGE" Multiplicity="1" />
+    <End Role="ORDER_DETAILS" Type="Self.ORDER_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MANAGE">
+        <PropertyRef Name="MaQL" />
+      </Principal>
+      <Dependent Role="ORDER_DETAILS">
+        <PropertyRef Name="MaQL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PAYMENT_M__MaTha__5070F446">
+    <End Role="DELIVERY" Type="Self.DELIVERY" Multiplicity="1" />
+    <End Role="PAYMENT_METHOD" Type="Self.PAYMENT_METHOD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DELIVERY">
+        <PropertyRef Name="MaThanhToan" />
+      </Principal>
+      <Dependent Role="PAYMENT_METHOD">
+        <PropertyRef Name="MaThanhToan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PAYMENT_ME__MaSP__5165187F">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="PAYMENT_METHOD" Type="Self.PAYMENT_METHOD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="PAYMENT_METHOD">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCT__MaQL__46E78A0C">
+    <End Role="MANAGE" Type="Self.MANAGE" Multiplicity="1" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MANAGE">
+        <PropertyRef Name="MaQL" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="MaQL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SELLER__MaLogin__4316F928">
+    <End Role="LOGINS" Type="Self.LOGINS" Multiplicity="1" />
+    <End Role="SELLER" Type="Self.SELLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOGINS">
+        <PropertyRef Name="MaLogin" />
+      </Principal>
+      <Dependent Role="SELLER">
+        <PropertyRef Name="MaLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SELLER__MaQL__440B1D61">
+    <End Role="MANAGE" Type="Self.MANAGE" Multiplicity="1" />
+    <End Role="SELLER" Type="Self.SELLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MANAGE">
+        <PropertyRef Name="MaQL" />
+      </Principal>
+      <Dependent Role="SELLER">
+        <PropertyRef Name="MaQL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QUANLY_QUANAOModelStoreContainer">
+    <EntitySet Name="BRAND" EntityType="Self.BRAND" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BUYER" EntityType="Self.BUYER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CART" EntityType="Self.CART" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DELIVERY" EntityType="Self.DELIVERY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOGINS" EntityType="Self.LOGINS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MANAGE" EntityType="Self.MANAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDER_DETAILS" EntityType="Self.ORDER_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAYMENT_METHOD" EntityType="Self.PAYMENT_METHOD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SELLER" EntityType="Self.SELLER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BRAND__MaSP__5812160E" Association="Self.FK__BRAND__MaSP__5812160E">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="BRAND" EntitySet="BRAND" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BUYER__MaLogin__38996AB5" Association="Self.FK__BUYER__MaLogin__38996AB5">
+      <End Role="LOGINS" EntitySet="LOGINS" />
+      <End Role="BUYER" EntitySet="BUYER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CART__MaBuyer__4CA06362" Association="Self.FK__CART__MaBuyer__4CA06362">
+      <End Role="BUYER" EntitySet="BUYER" />
+      <End Role="CART" EntitySet="CART" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CART__MaSP__4D94879B" Association="Self.FK__CART__MaSP__4D94879B">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="CART" EntitySet="CART" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CATEGORY__MaSP__49C3F6B7" Association="Self.FK__CATEGORY__MaSP__49C3F6B7">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MESSAGE__MaBuyer__403A8C7D" Association="Self.FK__MESSAGE__MaBuyer__403A8C7D">
+      <End Role="BUYER" EntitySet="BUYER" />
+      <End Role="MESSAGE" EntitySet="MESSAGE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MESSAGE__MaQL__3F466844" Association="Self.FK__MESSAGE__MaQL__3F466844">
+      <End Role="MANAGE" EntitySet="MANAGE" />
+      <End Role="MESSAGE" EntitySet="MESSAGE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ORDER_DET__MaGio__5535A963" Association="Self.FK__ORDER_DET__MaGio__5535A963">
+      <End Role="CART" EntitySet="CART" />
+      <End Role="ORDER_DETAILS" EntitySet="ORDER_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ORDER_DETA__MaQL__5441852A" Association="Self.FK__ORDER_DETA__MaQL__5441852A">
+      <End Role="MANAGE" EntitySet="MANAGE" />
+      <End Role="ORDER_DETAILS" EntitySet="ORDER_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PAYMENT_M__MaTha__5070F446" Association="Self.FK__PAYMENT_M__MaTha__5070F446">
+      <End Role="DELIVERY" EntitySet="DELIVERY" />
+      <End Role="PAYMENT_METHOD" EntitySet="PAYMENT_METHOD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PAYMENT_ME__MaSP__5165187F" Association="Self.FK__PAYMENT_ME__MaSP__5165187F">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="PAYMENT_METHOD" EntitySet="PAYMENT_METHOD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCT__MaQL__46E78A0C" Association="Self.FK__PRODUCT__MaQL__46E78A0C">
+      <End Role="MANAGE" EntitySet="MANAGE" />
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SELLER__MaLogin__4316F928" Association="Self.FK__SELLER__MaLogin__4316F928">
+      <End Role="LOGINS" EntitySet="LOGINS" />
+      <End Role="SELLER" EntitySet="SELLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SELLER__MaQL__440B1D61" Association="Self.FK__SELLER__MaQL__440B1D61">
+      <End Role="MANAGE" EntitySet="MANAGE" />
+      <End Role="SELLER" EntitySet="SELLER" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

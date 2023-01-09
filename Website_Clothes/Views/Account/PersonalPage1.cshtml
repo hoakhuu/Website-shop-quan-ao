@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Website_Clothes.Models.PersonalP>
+@using Website_Clothes.Models
+@{
+    ViewBag.Title = "ProductDetail";
+ 
+    LOGIN lg = Session["lg"] as LOGIN;
+
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 " style="background-color:#FFEFD6">
+
+            @{
+                foreach (var item in Model)
+                {
+                    <img height="100px" width="100px" style="border-radius:50%; margin-left:80px; margin-top:20px" src="@Url.Content("~/Picture/" + item.Hinh)" /><br />
+
+
+                    <p style="font-weight:700; text-align:center "> @item.Ten1</p>
+
+                    <p style="font-weight:700;  "><span style="color:red">Số điện thoại:</span> @item.Sdt</p>
+                    <p style="font-weight:700;  "><span style="color:red">Địa chỉ:</span> @item.Diachi</p>
+                }
+
+            }
+
+            @if (lg.VaiTro == "buyer")
+            {
+
+                <a href="@Url.Action("LichSuMuaHang", "GioHang")"><p style="font-weight: 600; color: #ff6a00; text-decoration: none ">Đơn Mua</p></a>
+                <a href="@Url.Action("PersonalCart", "GioHang")"><p style="font-weight: 600; color: #ff6a00; text-decoration: none ">Giỏ Hàng</p></a>
+
+            }
+            else
+            {
+                <a href="#"><p style="font-weight: 600; color: #ff6a00; text-decoration: none ">Cửa hàng</p></a>
+                <a href="#"><p style="font-weight: 600; color: #ff6a00; text-decoration: none ">Đăng sản phẩm</p></a>
+            }
+        </div>
+
+
+
+
+
+        </div>
+
+    </div>

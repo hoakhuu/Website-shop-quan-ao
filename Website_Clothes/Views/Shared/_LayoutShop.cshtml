@@ -1,0 +1,370 @@
+﻿@using Website_Clothes.Models
+@{
+    Layout = null;
+    LOGIN lg = Session["lg"] as LOGIN;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LayoutMain</title>
+    <!--Bootstrap 4-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <style>
+
+        .sp {
+            margin-left: 20px;
+            margin-top: 10px
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .img-magnifier-container {
+            position: relative;
+        }
+
+        .img-magnifier-glass {
+            position: absolute;
+            border: 3px solid #000;
+            border-radius: 50%;
+            cursor: none;
+            /*Set the size of the magnifier glass:*/
+            width: 100px;
+            height: 100px;
+            .buttons_added
+
+        {
+            opacity: 1;
+            display: inline-block;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            white-space: nowrap;
+            vertical-align: top;
+        }
+
+        .is-form {
+            overflow: hidden;
+            position: relative;
+            background-color: #f9f9f9;
+            height: 2.2rem;
+            width: 1.9rem;
+            padding: 0;
+            text-shadow: 1px 1px 1px #fff;
+            border: 1px solid #ddd;
+        }
+
+            .is-form:focus, .input-text:focus {
+                outline: none;
+            }
+
+            .is-form.minus {
+                border-radius: 4px 0 0 4px;
+            }
+
+            .is-form.plus {
+                border-radius: 0 4px 4px 0;
+            }
+
+        .input-qty {
+            background-color: #fff;
+            height: 2.2rem;
+            text-align: center;
+            font-size: 1rem;
+            display: inline-block;
+            vertical-align: top;
+            margin: 0;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            border-left: 0;
+            border-right: 0;
+            padding: 0;
+        }
+
+            .input-qty::-webkit-outer-spin-button, .input-qty::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+    </style>
+    <script>
+        function magnify(imgID, zoom) {
+            var img, glass, w, h, bw;
+            img = document.getElementById(imgID);
+            /*create magnifier glass:*/
+            glass = document.createElement("DIV");
+            glass.setAttribute("class", "img-magnifier-glass");
+            /*insert magnifier glass:*/
+            img.parentElement.insertBefore(glass, img);
+            /*set background properties for the magnifier glass:*/
+            glass.style.backgroundImage = "url('" + img.src + "')";
+            glass.style.backgroundRepeat = "no-repeat";
+            glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+            bw = 3;
+            w = glass.offsetWidth / 2;
+            h = glass.offsetHeight / 2;
+            /*execute a function when someone moves the magnifier glass over the image:*/
+            glass.addEventListener("mousemove", moveMagnifier);
+            img.addEventListener("mousemove", moveMagnifier);
+            /*and also for touch screens:*/
+            glass.addEventListener("touchmove", moveMagnifier);
+            img.addEventListener("touchmove", moveMagnifier);
+            function moveMagnifier(e) {
+                var pos, x, y;
+                /*prevent any other actions that may occur when moving over the image*/
+                e.preventDefault();
+                /*get the cursor's x and y positions:*/
+                pos = getCursorPos(e);
+                x = pos.x;
+                y = pos.y;
+                /*prevent the magnifier glass from being positioned outside the image:*/
+                if (x > img.width - (w / zoom)) { x = img.width - (w / zoom); }
+                if (x < w / zoom) { x = w / zoom; }
+                if (y > img.height - (h / zoom)) { y = img.height - (h / zoom); }
+                if (y < h / zoom) { y = h / zoom; }
+                /*set the position of the magnifier glass:*/
+                glass.style.left = (x - w) + "px";
+                glass.style.top = (y - h) + "px";
+                /*display what the magnifier glass "sees":*/
+                glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+            }
+            function getCursorPos(e) {
+                var a, x = 0, y = 0;
+                e = e || window.event;
+                /*get the x and y positions of the image:*/
+                a = img.getBoundingClientRect();
+                /*calculate the cursor's x and y coordinates, relative to the image:*/
+                x = e.pageX - a.left;
+                y = e.pageY - a.top;
+                /*consider any page scrolling:*/
+                x = x - window.pageXOffset;
+                y = y - window.pageYOffset;
+                return { x: x, y: y };
+            }
+
+        }
+
+
+
+
+
+        $('input.input-qty').each(function () {
+            var $this = $(this),
+                qty = $this.parent().find('.is-form'),
+                min = Number($this.attr('min')),
+                max = Number($this.attr('max'))
+            if (min == 0) {
+                var d = 0
+            } else d = min
+            $(qty).on('click', function () {
+                if ($(this).hasClass('minus')) {
+                    if (d > min) d += -1
+                } else if ($(this).hasClass('plus')) {
+                    var x = Number($this.val()) + 1
+                    if (x <= max) d += 1
+                }
+                $this.attr('value', d).val(d)
+            })
+        })
+    </script>
+</head>
+<body style="background-color:#dddddd">
+
+
+
+    <div class="container-fluid" style="background-color:#3A8891">
+        <div class="row">
+            <div class="col-lg-3 " style="background-color: #3A8891">
+                <a href="@Url.Action("BrandProduct","Category")">
+                    <img src="~/Picture/logostore.jpg" height="90px" width="120px" style="float:left" />
+                    <p style="float:left; font-size:15px; font-weight:700;text-align:center; margin-top:20px">
+                        ONE HEART <br />
+                        ONLY ONE EARTH
+                    </p>
+                </a>
+            </div>
+
+            <div class="col-lg-1" style="background-color: #3A8891">
+                <img src="~/Picture/tải_xuống__1_-removebg-preview.jpg" height="30px" width="30px" style="float:left; margin-top:20px" />
+                <p style="float:left; font-size:10px; font-weight:500;text-align:center; margin-top:20px">
+                    Deliver to <br />
+                    Viet Nam
+                </p>
+            </div>
+
+            <div class="col-lg-5 " style="background-color: #3A8891">
+                <form action="~/Category/InforShop" method="get">
+                    <input type="text" size="50" style="border: 3px solid #ddb3b3; border-radius: 20px; margin-top: 20px" id="sreach" name="sreach" />
+                    <input type="submit" size="10" style="margin-left: 10px; padding: 5px; margin-top: 20px" value="Sreach" />
+                </form>
+                @Html.Action("DanhMucTT", "Category")
+
+            </div>
+
+
+            <div class="col-lg " style="background-color: #3A8891">
+                @if (lg == null)
+                {
+                    <a href="~/Account/DangNhap" style="color:white">
+                        <img src="~/Picture/5df39a6672dbb485edca-removebg-preview.jpg" height="40px" width="40px" style="float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center; margin-top:23px">
+                            Hello, Sign inb<br />Account
+                        </p>
+                    </a>
+
+                    <a href="~/Account/DangNhap" style="color:white">
+                        <img src="~/Picture/download-removebg-preview.jpg" height="30px" width="30px" style="margin-left:30px;float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center;margin-left:10px; margin-top:29px">
+                            Cart
+                        </p>
+                    </a>
+                }
+                else if (lg.VaiTro == "buyer")
+                {
+                    <a href="~/Account/PersonalPage">
+                        <img src="@Url.Content("~/Picture/" + lg.AVT)" height="50px" width="50px" style="float:left; margin-top:20px; border-radius:50%" />
+                        <p style="float:left; font-size:15px; font-weight:500;text-align:center; margin-top:27px">
+                            Hello,<br />@lg.TenLogin
+                        </p>
+                    </a>
+                    <a href="@Url.Action("PersonalCart","GioHang")" style="color:white">
+                        <img src="~/Picture/download-removebg-preview.jpg" height="30px" width="30px" style="margin-left:30px;float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center;margin-left:10px; margin-top:29px">
+                            Cart <span style="height: 30px; width: 30px; border-radius: 10%; padding: 5px; background-color: orangered"> @Html.Action("TongSL", "GioHang")</span>
+                        </p>
+                    </a>
+
+                }
+                else if (lg.VaiTro == "seller")
+                {
+                    <a href="~/Account/PersonalPage">
+                        <img src="@Url.Content("~/Picture/" + lg.AVT)" height="50px" width="50px" style="float:left; margin-top:20px; border-radius:50%" />
+                        <p style="color: white; float: left; font-size: 15px; font-weight: 500; text-align: center; margin-top: 27px">
+                            Shop,<br />@lg.TenLogin
+                        </p>
+                    </a>
+                    <a href="@Url.Action("PersonalCart","GioHang")" style="color:white">
+                        <img src="~/Picture/download-removebg-preview (3).png" height="30px" width="30px" style="margin-left:30px;float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center;margin-left:10px; margin-top:29px">
+                            Thông báo <span style="height: 30px; width: 30px; border-radius: 10%; padding: 5px; background-color: orangered"> </span>
+                        </p>
+                    </a>
+                }
+            </div>
+        </div>
+
+    </div>
+    <br />
+
+
+
+
+    @RenderBody()
+
+
+
+
+    <div class="containes">
+        <div class="row">
+            <div class="col-md-3" style="background-color:#0E5E6F ;">
+
+                <ul class="nav flex-column" style="border-bottom: 1px solid; line-height: 9px; margin-top: 20px; margin-left: 30px;">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" id="hd" aria-current="page" style="color:yellow ;">Giới thiệu tổ chức</a>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">Đối tác</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">Thông tin truyền thông</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">Quan hệ số</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">Việt làm với chuyên môn</a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3" style="background-color:#0E5E6F ;">
+
+                <ul class="nav flex-column" style="border-bottom: 1px solid; line-height: 9px; margin-top: 20px; margin-left: 30px;">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" id="hd" aria-current="page" style="color:yellow ;">Pháp lý</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">Các điều kiện</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">Điều lệ vận chuyển</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">Điều Kiện Sử Dụng Cookies</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">Bảo Mật Thông Tin</a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md" style="background-color:#0E5E6F ;">
+
+                <ul class="nav flex-column" style="border-bottom: 1px solid; line-height: 9px; margin-top: 20px; margin-left: 30px;">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" id="hd" aria-current="page" style="color:yellow ;">Trường Đại Học Công nghiệp Thực Phẩm TP.Hồ Chí Minh </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" id="hd" aria-current="page" style="color:yellow ;">Khoa Công Nghệ Thông Tin</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" id="hd" aria-current="page" style="color:yellow ;">Học phần: Lập trình Web</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">GVHD: Nguyễn Hải Yến</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">Sinh Viên Thực Hiện:</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link c" href="#">2001200606 - Khưu Văn Hòa</a>
+                    </li>
+
+                   
+
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

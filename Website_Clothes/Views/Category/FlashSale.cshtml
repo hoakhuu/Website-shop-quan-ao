@@ -1,0 +1,137 @@
+﻿
+@model IEnumerable<Website_Clothes.Models.BiaSP>
+
+
+<div class="container">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @*-------------------------------------------------*@
+
+            @{
+
+                int slm = Model.Count();
+
+                int dd = 0, cc = 5;
+                int sss = slm - 5;
+
+                while (slm > sss)
+                {
+                    int s = 1;
+
+                    <div class="carousel-item  active">
+
+                                    <div class="cards-wrapper fs">
+
+                                        @foreach (var item in Model)
+                                        {
+                                            if (s > dd && s <= cc)
+                                            {
+                                                <a href="@Url.Action("ProductDetail","Product", new{ @masppp=item.Masp})">
+                                                    <div class="card sp" style="width: 195px; height:280PX; float:left">
+                                                        <div id="show5" style="padding:1px">
+                                                            <img height="195px" width="185px" src="@Url.Content("~/Picture/"+item.Hinhsp)">
+                                                        </div>
+                                                        <div class="card-body">
+                                                            @if (item.Tensp.Length > 49)
+                                                            {
+                                                                <P class="card-title" style="font-size:10px;font-weight:700; text-align:left; margin:0 0">  @item.Tensp.Substring(0, 49)... </P>
+                                                            }
+                                                            else
+                                                            {
+                                                                <P class="card-title" style="font-size:10px;font-weight:700; text-align:left; margin:0 0">  @item.Tensp </P>
+                                                            }
+                                                            <p class="card-text bg-danger" style="color:aliceblue; font-size:13px; font-weight:900;text-align:center">@item.Gia</p>
+
+
+                                                        </div>
+                                                    </div>
+                                                    </a>
+
+                                                    }
+                                                    if (s > cc)
+                                                    {
+
+
+                                                    break;
+                                                    }
+
+                                                    s = s + 1;
+                                                    slm--;
+
+                                                    }
+
+                                            </div>
+                    </div>
+
+                }
+                // ---------------------------------
+                dd = dd + 5;
+                cc = cc + 5;
+
+                while (slm > 0)
+                {
+                    int s = 1;
+
+                    <div class="carousel-item ">
+
+                        <div class="cards-wrapper fs">
+
+                            @foreach (var item in Model)
+                            {
+                                if (s > dd && s <= cc)
+                                {
+                                    <a href="@Url.Action("ProductDetail","Product", new{ @masppp=item.Masp})">
+                                        <div class="card sp" style="width: 195px; height:280PX; float:left">
+                                            <div id="show5" style="padding:1px">
+                                                <img height="195px" width="185px" src="@Url.Content("~/Picture/"+item.Hinhsp)">
+                                            </div>
+                                            <div class="card-body">
+                                                @if (item.Tensp.Length > 49)
+                                                {
+                                                    <P class="card-title" style="font-size:10px;font-weight:700; text-align:left; margin:0 0">  @item.Tensp.Substring(0, 49)... </P>
+                                                }
+                                                else
+                                                {
+                                                    <P class="card-title" style="font-size:10px;font-weight:700; text-align:left; margin:0 0">  @item.Tensp </P>
+                                                }
+                                                <p class="card-text bg-danger" style="color:aliceblue; font-size:13px; font-weight:900;text-align:center">@item.Gia</p>
+
+
+                                            </div>
+                                        </div>
+                                        </a>
+
+                                        }
+                                        if (s > cc)
+                                        {
+                                        dd = dd + 5;
+                                        cc = cc + 5;
+
+                                        break;
+                                        }
+
+                                        s = s + 1;
+                                        slm--;
+
+                                        }
+
+                                </div>
+                    </div>
+
+                }
+            }
+
+            @*-------------------------------------------------*@
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+  

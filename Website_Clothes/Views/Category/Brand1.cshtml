@@ -1,0 +1,26 @@
+﻿@using Website_Clothes.Models
+@model List<BRAND>
+
+<div class="col-lg-2">
+    <p>Bộ lọc tìm kiếm</p>
+    <div class="list-group">
+        <a href="#" style="background-color: #D6CDA4" class="list-group-item list-group-item-action active">
+            Product Brand
+        </a>
+
+        @{
+
+            foreach (var item in Model)
+            {
+                <a href="@Url.Action("BrandProduct","Category", new{ @mbrand=item.MaBrand})" class="list-group-item list-group-item-action">@item.TenBrand</a>
+            }
+        }
+
+
+    </div>
+    <br />
+    <br />
+
+    @Html.Action("CategoryProduct", "Category")
+
+</div>

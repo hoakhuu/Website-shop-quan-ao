@@ -1,0 +1,136 @@
+﻿@model IEnumerable<Website_Clothes.Models.cart>
+@{
+    ViewBag.Title = "PersonalCart";
+    Layout = "~/Views/Shared/_LayoutProDetail.cshtml";
+}
+
+<div style="margin-left:50px">
+    <h5 style="">Giỏ hàng <span style="color:dimgray">(@Html.Action("TongSL", "GioHang") sản phẩm)</span> </h5>
+    <div style="width:879px; background-color:antiquewhite; float:left">
+        <table class="table" style="font-size:13px;">
+            <tr style="text-transform:uppercase; background-color:antiquewhite;">
+                <th>
+                    Sản phẩm
+                </th>
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Giá tiền
+                </th>
+                <th>
+                    Thành tiền
+                </th>
+
+                <th>Thao tác</th>
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>
+                        <img height="70px" width="70px" style="float:left" src="@Url.Content("~/Picture/" + item.Hinh)">
+                        @if (item.Ten.Length > 36)
+                        {
+                            <P class="card-title" style="margin-left:5px;font-size:15px;font-weight:700; text-align:left; margin:0 0; float:left; margin-top:23px">  @item.Ten.Substring(0, 30)... </P>
+                        }
+                        else
+                        {
+                            <P class="card-title" style="margin-left: 5px; font-size: 15px; font-weight: 700; text-align: left; margin: 0 0; float: left; margin-top: 23px">@item.Ten</P>
+                        }
+                    </td>
+                        <td>
+                            <input style="margin-top: 23px" size="2" value="@item.Sl" />
+                        </td>
+                        <td>
+                            <h6 style="margin-top: 23px">@item.Dongia</h6>
+                        </td>
+                        <td>
+                            <h6 style="margin-top: 23px">@item.Tong</h6>
+                        </td>
+                        <td>
+                            <a style="float:left" href="@Url.Action("DeleteCart","GioHang", new {@magiohang=item.Magiohang})"><img style="float:left;margin-top:25px" height="10px" width="10px" src="../Picture/tải xuống (4).jpg" /></a>
+                        </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <div  style="width: 287px; background-color: antiquewhite;float:left;padding-left:20px ">
+        <h6 style="text-align:center; margin-top:10px">Hóa đơn của bạn</h6>
+        <hr style="background-color: #1e5b3c" size="5"/>
+        
+        <p>Tạm tính: <span style="font-size:15; font-weight:500;color:palevioletred">@Html.Action("TongTien", "GioHang")</span> </p>
+        <p>Giảm giá: 0</p>
+        <hr size="5px" />
+        <a href="@Url.Action("PayUp","ThanhToan")" style="text-decoration: none;color:white"><div style="width:240px; height:38px; background-color:orange"><h6 style="text-align:center; padding:5px">Tiến hành đặt hàng</h6></div></a>
+        <br />
+    </div>
+
+
+
+</div>
+
+<div style="clear:both"></div>
+
+
+
+
+
+    
+    @*@{
+       
+        foreach (var item in Model)
+        { 
+            <br />
+            <hr style="color: #dddddd" size="5px" />
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg">
+                    <img height="50px" width="50px" style="float:left" src="@Url.Content("~/Picture/" + item.Hinhshop)">
+                    <p style="float:left">Shop: @item.Tenshop</p>
+
+                </div>
+            </div>
+            <div class="row" >
+                
+
+                <div class="col-lg-4 " style="background-color:white">
+                    <img height="70px" width="70px" style="float:left" src="@Url.Content("~/Picture/" + item.Hinh)">
+                    @if (item.Ten.Length > 36)
+                    {
+                        <P class="card-title" style="margin-left:5px;font-size:15px;font-weight:700; text-align:left; margin:0 0; float:left; margin-top:23px">  @item.Ten.Substring(0, 30)... </P>
+                    }
+                    else
+                    {
+                        <P class="card-title" style="margin-left: 5px; font-size: 15px; font-weight: 700; text-align: left; margin: 0 0; float: left; margin-top: 23px">@item.Ten</P>
+                    }
+                   
+                </div>
+
+                <div class="col-lg-1">
+                    <input style="margin-top: 23px" size="2"  value="@item.Sl" />
+                </div>
+
+                <div class="col-lg-1 ">
+                    <h6 style="margin-top: 23px">@item.Size</h6>
+                </div>
+
+                <div class="col-lg-2 ">
+                    <h6 style="margin-top: 23px">@item.Dongia</h6>
+                </div>
+
+
+
+
+            </div>
+           
+        }
+    }
+
+
+</div>*@
+

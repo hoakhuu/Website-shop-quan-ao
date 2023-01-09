@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "PayUp";
+    Layout = "~/Views/Shared/_LayoutProDetail.cshtml";
+}
+
+
+<div style="background-color:white; width:1000px;height:66px; margin-left:120px">
+    <p style="margin-top:20px; margin-left:50px; font-size:20px; font-weight:500; color:#ff6a00; float:left">Thông tin thanh toán</p>
+    <div style="margin-left:250px; margin-top: 20px; float: left;"><h6 style="background-color:#ff6a00;color:white; border-radius:50%;border: 2px solid #ff6a00; height: 25px; width: 25px; text-align: center; float:left">1</h6>.<p style="float:left; margin-left:5px">Đăng nhập</p>  </div>
+
+    <div style="margin-top: 20px; float: left; margin-left: 20px"><h6 style="background-color: #ff6a00; color: white; border-radius: 50%; border: 2px solid #ff6a00; height: 25px; width: 25px; text-align: center; float: left ">2</h6>.<p style="float: left; margin-left: 5px">Thông tin nhận hàng</p>  </div>
+
+    <div style="margin-top: 20px; float: left; margin-left: 20px"><h6 style="background-color: #ff6a00; color: white; border-radius: 50%; border: 2px solid #ff6a00; height: 25px; width: 25px; text-align: center; float: left ">3</h6>.<p style="float: left; margin-left: 5px">Thanh toán</p>  </div>
+</div>
+
+<div style="float:left">
+
+<div style="width: 600px; height: 179px; background-color: white; margin-left: 120px;">
+    <p style="margin-top:20px; margin-left:50px; font-size:20px; font-weight:500; color:#ff6a00">Địa chỉ nhận hàng</p>
+    @Html.Action("Address", "ThanhToan")
+</div>
+
+    
+
+    <div style="width: 600px; height: 110px; background-color: white; margin-left: 120px;">
+        <p style="margin-top:20px; margin-left:50px; font-size:20px; font-weight:500; color:#ff6a00">Phương thức vận chuyển</p>
+        <div style="margin-left:30px">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    <span style="color:orangered; font-weight:700">[Now Free] </span>Giao nhanh trong 2h: 0đ <span style="color:dimgrey">(nhận trước 17h hôm nay)</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    <span style="font-weight:700">Giao hàng trong 48h: 0đ</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+<div style="width: 600px; height: 179px; background-color: white; margin-left: 120px; ">
+    <p style="margin-top:20px; margin-left:50px; font-size:20px; font-weight:500; color:#ff6a00">Phương thức thanh toán</p>
+    <p style="font-weight:500; float:left; margin-left:30px">Chọn phương pháp thanh toán:</p>
+    <select name="country" id="size" style="width:200px; float:left; margin-left:6px">
+        <option value="Thanh toán khi nhận hàng">Thanh toán tiền khi nhận hàng (COD)</option>
+        <option value="Thanh toán qua thẻ ngân hàng">Thanh toán trực tuyến <span style="font-weight:500; color:forestgreen">Vietcombank</span></option>
+        <option value="Thanh toán qua thẻ ngân hàng">Thanh toán trực tuyến <span style="font-weight: 500;color:red">V</span><span style="font-weight: 500;color:forestgreen">N</span> <span style="font-weight: 500;color:forestgreen">BANK</span></option>
+
+    </select>
+
+    <div class="form-check" style="margin-left:30px">
+        <input class="form-check-input" type="radio" name="ttt" id="flexRadioDefault2">
+        <label class="form-check-label" for="flexRadioDefault2">
+            <span style="color:orange">Quý khách cần xuất thông tin mua hàng vui lòng nhập thông tin tại đây</span>
+        </label>
+    </div>
+</div><br />
+    </div>
+<br />
+<div style="width: 389px; background-color: white; float:left; margin-left:10px">
+    <p style="margin-top:20px; margin-left:50px; font-size:20px; font-weight:500; color:#ff6a00;">Đơn hàng</p>
+    <div style="width: 389px; height: 200px; overflow-y: auto; overflow-x:hidden">
+        @Html.Action("PayUpCart", "ThanhToan")
+    </div>
+
+
+    <p style="margin-left:20px">Tạm tính: <span style="font-weight:700; color:orangered">@Html.Action("TongTien", "GioHang")</span></p>
+    <form style="margin-left:20px">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <label style="margin-left:20px" class="sr-only" for="inlineFormInputGroup">Nhập mã giảm giá</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Sử dụng</div>
+                    </div>
+                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nhập mã giảm giá">
+                </div>
+            </div>
+        </div>
+        <hr style="color:dimgray;" />
+        <p style="font-size:10px; color:forestgreen">Bạn có phiếu mua hàng?</p>
+
+        <p style="font-size: 13px; line-height:5px ">Tạm tính: @Html.Action("TongTien", "GioHang")đ</p>
+        <p style="font-size: 13px; line-height: 5px ">Phí vận chuyển: 0đ</p>
+        <p style="font-size: 13px; line-height: 5px ">Giảm giá: -0đ</p>
+        <hr style="color:dimgray;" />
+        <p style="font-weight:700;font-size:15px">
+            Thành tiền (đã VAT):&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="font-weight:700;font-size:15px; color:orangered">@Html.Action("TongTien", "GioHang")</span>
+        </p>
+    
+        <a href="@Url.Action("Order","ThanhToan")"><button  type="button" class="btn btn-warning" style="margin-left:130px; " ><span style=" font-weight:700px;">Đặt hàng</span></button></a>
+    </form><br />
+</div>
+<div style="clear:both"></div>

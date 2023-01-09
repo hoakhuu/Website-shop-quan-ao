@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_QUANAOO" Class="QLQADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=MSI\SQLEXPRESS;Initial Catalog=QL_QUANAOO;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QL_QUANAOOConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BRAND" Member="BRANDs">
+    <Type Name="BRAND">
+      <Column Name="MaBrand" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenBrand" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="HinhMH" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Association Name="BRAND_PRODUCT" Member="PRODUCTs" ThisKey="MaBrand" OtherKey="MaBrand" Type="PRODUCT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VOUCHER" Member="VOUCHERs">
+    <Type Name="VOUCHER">
+      <Column Name="MaGiamGia" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaQL" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongGiam" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhanGiam" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TGBatDau" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TGKetThuc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="MANAGE_VOUCHER" Member="MANAGE" ThisKey="MaQL" OtherKey="MaQL" Type="MANAGE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BUYER" Member="BUYERs">
+    <Type Name="BUYER">
+      <Column Name="MaBuyer" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenBuyer" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaLogin" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="AvatarBuyer" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="BUYER_CART" Member="CARTs" ThisKey="MaBuyer" OtherKey="MaBuyer" Type="CART" />
+      <Association Name="BUYER_MESSAGE" Member="MESSAGEs" ThisKey="MaBuyer" OtherKey="MaBuyer" Type="MESSAGE" />
+      <Association Name="LOGIN_BUYER" Member="LOGIN" ThisKey="MaLogin" OtherKey="MaLogin" Type="LOGIN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CART" Member="CARTs">
+    <Type Name="CART">
+      <Column Name="ThoiGian" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Size" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="MaGioHang" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaBuyer" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="MaSP" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="CART_ORDER_DETAIL" Member="ORDER_DETAILs" ThisKey="MaGioHang" OtherKey="MaGioHang" Type="ORDER_DETAIL" />
+      <Association Name="BUYER_CART" Member="BUYER" ThisKey="MaBuyer" OtherKey="MaBuyer" Type="BUYER" IsForeignKey="true" />
+      <Association Name="PRODUCT_CART" Member="PRODUCT" ThisKey="MaSP" OtherKey="MaSP" Type="PRODUCT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CATEGORY" Member="CATEGORies">
+    <Type Name="CATEGORY">
+      <Column Name="MaLoai" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="HinhMH" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="CATEGORY_PRODUCT" Member="PRODUCTs" ThisKey="MaLoai" OtherKey="MaLoai" Type="PRODUCT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHARIRY_PRODUCT" Member="CHARIRY_PRODUCTs">
+    <Type Name="CHARIRY_PRODUCT">
+      <Column Name="MaSPC" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenSPC" Type="System.String" DbType="NVarChar(90)" CanBeNull="true" />
+      <Column Name="MoTaC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Hinh1C" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Hinh2C" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Hinh3C" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TinhTrang" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MaDonor" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="CHARIRY_PRODUCT_DONATE" Member="DONATEs" ThisKey="MaSPC" OtherKey="MaSPC" Type="DONATE" />
+      <Association Name="DONOR_CHARIRY_PRODUCT" Member="DONOR" ThisKey="MaDonor" OtherKey="MaDonor" Type="DONOR" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHARITY_ORGANIZATION" Member="CHARITY_ORGANIZATIONs">
+    <Type Name="CHARITY_ORGANIZATION">
+      <Column Name="MaTC" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenTC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DiaChiTC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="CHARITY_ORGANIZATION_DONATE" Member="DONATEs" ThisKey="MaTC" OtherKey="MaTC" Type="DONATE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DELIVERY" Member="DELIVERies">
+    <Type Name="DELIVERY">
+      <Column Name="MaThanhToan" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PTThanhToan" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="DELIVERY_PAYMENT_METHOD" Member="PAYMENT_METHODs" ThisKey="MaThanhToan" OtherKey="MaThanhToan" Type="PAYMENT_METHOD" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DONATE" Member="DONATEs">
+    <Type Name="DONATE">
+      <Column Name="MaTC" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaSPC" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="CHARIRY_PRODUCT_DONATE" Member="CHARIRY_PRODUCT" ThisKey="MaSPC" OtherKey="MaSPC" Type="CHARIRY_PRODUCT" IsForeignKey="true" />
+      <Association Name="CHARITY_ORGANIZATION_DONATE" Member="CHARITY_ORGANIZATION" ThisKey="MaTC" OtherKey="MaTC" Type="CHARITY_ORGANIZATION" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DONOR" Member="DONORs">
+    <Type Name="DONOR">
+      <Column Name="MaDonor" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenDonor" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MaLogin" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="DONOR_CHARIRY_PRODUCT" Member="CHARIRY_PRODUCTs" ThisKey="MaDonor" OtherKey="MaDonor" Type="CHARIRY_PRODUCT" />
+      <Association Name="LOGIN_DONOR" Member="LOGIN" ThisKey="MaLogin" OtherKey="MaLogin" Type="LOGIN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOGINS" Member="LOGINs">
+    <Type Name="LOGIN">
+      <Column Name="MaLogin" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLogin" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="MatKhauLogin" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="VaiTro" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="AVT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="LOGIN_BUYER" Member="BUYERs" ThisKey="MaLogin" OtherKey="MaLogin" Type="BUYER" />
+      <Association Name="LOGIN_DONOR" Member="DONORs" ThisKey="MaLogin" OtherKey="MaLogin" Type="DONOR" />
+      <Association Name="LOGIN_SELLER" Member="SELLERs" ThisKey="MaLogin" OtherKey="MaLogin" Type="SELLER" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MANAGE" Member="MANAGEs">
+    <Type Name="MANAGE">
+      <Column Name="MaQL" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="MANAGE_VOUCHER" Member="VOUCHERs" ThisKey="MaQL" OtherKey="MaQL" Type="VOUCHER" />
+      <Association Name="MANAGE_MESSAGE" Member="MESSAGEs" ThisKey="MaQL" OtherKey="MaQL" Type="MESSAGE" />
+      <Association Name="MANAGE_ORDER_DETAIL" Member="ORDER_DETAILs" ThisKey="MaQL" OtherKey="MaQL" Type="ORDER_DETAIL" />
+      <Association Name="MANAGE_PRODUCT" Member="PRODUCTs" ThisKey="MaQL" OtherKey="MaQL" Type="PRODUCT" />
+      <Association Name="MANAGE_SELLER" Member="SELLERs" ThisKey="MaQL" OtherKey="MaQL" Type="SELLER" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MESSAGE" Member="MESSAGEs">
+    <Type Name="MESSAGE">
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ThoiGianNhan" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="MaQL" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaBuyer" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="BUYER_MESSAGE" Member="BUYER" ThisKey="MaBuyer" OtherKey="MaBuyer" Type="BUYER" IsForeignKey="true" />
+      <Association Name="MANAGE_MESSAGE" Member="MANAGE" ThisKey="MaQL" OtherKey="MaQL" Type="MANAGE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ORDER_DETAILS" Member="ORDER_DETAILs">
+    <Type Name="ORDER_DETAIL">
+      <Column Name="MaSPChiTiet" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaQL" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="MaGioHang" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="CART_ORDER_DETAIL" Member="CART" ThisKey="MaGioHang" OtherKey="MaGioHang" Type="CART" IsForeignKey="true" />
+      <Association Name="MANAGE_ORDER_DETAIL" Member="MANAGE" ThisKey="MaQL" OtherKey="MaQL" Type="MANAGE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PAYMENT_METHOD" Member="PAYMENT_METHODs">
+    <Type Name="PAYMENT_METHOD">
+      <Column Name="MaThanhToan" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaSP" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="DELIVERY_PAYMENT_METHOD" Member="DELIVERY" ThisKey="MaThanhToan" OtherKey="MaThanhToan" Type="DELIVERY" IsForeignKey="true" />
+      <Association Name="PRODUCT_PAYMENT_METHOD" Member="PRODUCT" ThisKey="MaSP" OtherKey="MaSP" Type="PRODUCT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCT" Member="PRODUCTs">
+    <Type Name="PRODUCT">
+      <Column Name="MaSP" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenSP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Hinh1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Hinh2" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Hinh3" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DonGia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TinhTrang" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="KichThuoc1" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="KichThuoc2" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="KichThuoc3" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="MaQL" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="MaLoai" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="MaBrand" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Association Name="PRODUCT_CART" Member="CARTs" ThisKey="MaSP" OtherKey="MaSP" Type="CART" />
+      <Association Name="PRODUCT_PAYMENT_METHOD" Member="PAYMENT_METHODs" ThisKey="MaSP" OtherKey="MaSP" Type="PAYMENT_METHOD" />
+      <Association Name="BRAND_PRODUCT" Member="BRAND" ThisKey="MaBrand" OtherKey="MaBrand" Type="BRAND" IsForeignKey="true" />
+      <Association Name="CATEGORY_PRODUCT" Member="CATEGORY" ThisKey="MaLoai" OtherKey="MaLoai" Type="CATEGORY" IsForeignKey="true" />
+      <Association Name="MANAGE_PRODUCT" Member="MANAGE" ThisKey="MaQL" OtherKey="MaQL" Type="MANAGE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SELLER" Member="SELLERs">
+    <Type Name="SELLER">
+      <Column Name="MaSeller" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenSeller" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaLogin" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="MaQL" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="AvatarSeller" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="LOGIN_SELLER" Member="LOGIN" ThisKey="MaLogin" OtherKey="MaLogin" Type="LOGIN" IsForeignKey="true" />
+      <Association Name="MANAGE_SELLER" Member="MANAGE" ThisKey="MaQL" OtherKey="MaQL" Type="MANAGE" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

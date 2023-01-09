@@ -1,0 +1,102 @@
+﻿
+
+
+@model IEnumerable<Website_Clothes.Models.SPShop>
+    @using Website_Clothes.Models
+    @{
+        ViewBag.Title = "ProductDetail";
+        Layout = "~/Views/Shared/_LayoutProDetail.cshtml";
+        LOGIN lg = Session["lg"] as LOGIN;
+        SELLER selr = Session["SL"] as SELLER;
+
+    }
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 " style="background-color:#FFEFD6">
+
+            @{
+
+                <img height="100px" width="100px" style="border-radius:50%; margin-left:80px; margin-top:20px" src="@Url.Content("~/Picture/" + selr.AvatarSeller)" /><br />
+
+
+                <p style="font-weight:700; text-align:center "> @selr.TenSeller</p>
+
+                <p style="font-weight:700;  "><span style="color:red">Số điện thoại:</span> @selr.SDT</p>
+                <p style="font-weight:700;  "><span style="color:red">Địa chỉ:</span> @selr.DiaChi</p>
+
+
+            }
+
+
+            
+            <a href="@Url.Action("PersonalPage", "Account")"><p style="font-weight: 600; color: #ff6a00; text-decoration: none ">Cửa hàng</p></a>
+            <a href="@Url.Action("ThongBaoDonHang","MyShop")"><p style="font-weight: 600; color: #ff6a00; text-decoration: none ">Đơn đặt hàng</p></a>
+
+        </div>
+
+        <div class="col-lg" style="background-color:cornsilk">
+
+            <h4 style="color:orangered; text-align:center">Chỉnh sửa thông tin sản phẩm</h4>
+            @{
+
+                foreach (var item in Model)
+                {
+                    <form action="~/MyShop/SaveSP" method="get">
+                        <div style="float:left">
+                            <div class="card" style="width: 150px; float:left">
+                                <img class="card-img-top" height="150px" width="150px" id="h11" src=" @Url.Content("~/Picture/" + item.Hinh1) " alt="Card image cap">
+
+                            </div>
+
+                            <div class="card" style="width: 150px; float: left;margin-left:5px">
+                                <img class="card-img-top" height="150px" width="150px" src="@Url.Content("~/Picture/" + item.Hinh2) " alt="Card image cap">
+
+                            </div>
+
+                            <div class="card" style="width: 150px; float: left; margin-left: 5px ">
+                                <img class="card-img-top" height="150px" width="150px" src="@Url.Content("~/Picture/" + item.Hinh3) " alt="Card image cap">
+
+                            </div>
+                            <div style="clear:both"></div><br />
+                            <label>Hình 1</label>
+                            <input type="file" id="myFile2" name="filename1" ><br /><br />
+                            <label>Hình 2</label>
+                            <input type="file" id="myFile2" name="filename2"><br /><br />
+                            <label>Hình 3</label>
+                            <input type="file" id="myFile2" name="filename3"><br /><br />
+                        </div>
+
+
+                    
+                        <div style="margin-left:15px;float:left">
+
+                            <input style="width:40px" type="text" name="msp" value="@item.Masp"/>
+                            <label>Tên sản phẩm:</label><br />
+                            <input type="text" style="height:30px; width:400px" placeholder="@item.Tensp" name="ten" /><br /><br />
+                            <label>Giá:</label>
+                            <input type="text" style="height:30px; width:100px" placeholder="@item.Dongia" name="dongia" /><br /><br />
+                            <label>Size:</label>
+                            <input type="text" style="height:30px; width:40px" placeholder="@item.Size1" name="size1" />
+                            <input type="text" style="height:30px; width:40px" placeholder="@item.Size2" name="size2" />
+                            <input type="text" style="height:30px; width:40px" placeholder="@item.Size3" name="size3" /><br /><br />
+
+
+
+                            <br /><br />
+                            <a><input type="submit" value="Sửa sản phẩm" style="margin-left:120px;width:170px; height:45px; padding:5px; background-color:orangered" /></a><br>
+                        </div>
+                    </form>
+
+                }
+
+
+            }
+
+
+        </div>
+
+    </div>
+    <br />

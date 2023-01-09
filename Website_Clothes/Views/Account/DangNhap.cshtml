@@ -1,0 +1,89 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Layout1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+@*Chieu-Tren-Canh-Dong-01.jpg*@
+<body style="margin: 0px 0px; background-image: url(../Picture/Hinh-nen-iPad-4K.jpg); background-repeat: no-repeat; width: 100% ">
+    @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            {
+    <div id="l0" style="width: 50%; background-color: white; opacity: 80%;float:left;">
+        <h1 style="text-align:center; margin-top:89px; font-size:50px; font-weight:1000">Sign In</h1><br />
+        <img src="~/Picture/732026 (1).jpg" height="50px" width="50px" style="margin-left:189px;" />
+        <img src="~/Picture/ig.jpg" height="50px" width="50px" style="margin-left:35px" />
+        <img src="~/Picture/facebook-social-media-fb-logo-square.jpg" height="50px" width="50px" style="margin-left:35px" /> <br />
+        <legen><p style="text-align: center; font-size: 20px; font-weight: 700; color:#c81e1e ; margin-top:10px">Buyer</p></legen>
+        <label for="fname" style="margin-left:90px; font-size:20px; font-weight:700">TÊN ĐĂNG NHẬP</label>
+        <div style="width:425px; margin-left:90px">
+            @Html.TextBox("TenDN", "", new { @class = "form-control" }) @ViewData["Loi2"]
+        </div><br>
+
+        <label for="lname" style="margin-left: 90px; font-size: 20px; font-weight: 700 ">MẬT KHẨU</label>
+
+        <div style="width: 425px; margin-left: 90px">
+            @Html.Password("Matkhau", "", new { @class = "form-control" }) @ViewData["Loi3"]
+        </div><br />
+        <a href="#" style="margin-left: 380px; text-decoration: none; ">Forgot your password ?</a><br /><br />
+        <input type="submit" style="margin-left:150px;padding: 10px; color: #c81e1e;font-weight: 500" border="5px" value="ĐĂNG NHẬP">
+        <input onclick="hd()" type="submit" style="margin-left:50px;padding: 10px; color: #c81e1e;font-weight: 500" border="5px" value="ĐĂNG KÝ">
+        <p></p>
+
+    </div>
+
+    <div id="l1" style="width: 50%; background-color: wheat; opacity: 80%; float:left">
+        <h1 style="text-align:center; margin-top:80px; font-size:50px; font-weight:1000">ĐĂNG KÝ</h1><br />
+        <img src="~/Picture/732026 (1).jpg" height="50px" width="50px" style="margin-left:189px;" />
+        <img src="~/Picture/ig.jpg" height="50px" width="50px" style="margin-left:35px" />
+        <img src="~/Picture/facebook-social-media-fb-logo-square.jpg" height="50px" width="50px" style="margin-left:35px" /> <br />
+        <legen><p style="text-align: center; font-size: 20px; font-weight: 700; color:#c81e1e ; margin-top:10px">Đăng Ký Buyer</p></legen>
+        <label for="fname" style="margin-left:90px; font-size:14px; font-weight:700">TÊN ĐĂNG NHẬP</label>
+        <div style="width:425px; margin-left:90px">
+            @Html.TextBox("TenDN_DK", "", new { @class = "form-control" }) @ViewData["Loi2"]
+        </div>
+
+        <label for="lname" style="margin-left: 90px; font-size: 14px; font-weight: 700 ">MẬT KHẨU</label>
+
+        <div style="width: 425px; margin-left: 90px">
+            @Html.TextBox("MK_DK1", "", new { @class = "form-control" }) @ViewData["Loi2"]
+        </div>
+
+        <label for="lname" style="margin-left: 90px; font-size: 14px; font-weight: 700 ">NHẬP LẠI MẬT KHẨU</label>
+
+        <div style="width: 425px; margin-left: 90px">
+            @Html.TextBox("XNMK", "", new { @class = "form-control" }) @ViewData["Loi2"]
+        </div>
+        <br><br>
+
+        <input type="submit" style="margin-left:250px;padding: 10px; color: #c81e1e;font-weight: 500" border="5px" value="ĐĂNG KÝ">
+        <p></p>
+    </div>
+
+
+
+    }
+        }
+    <script>
+
+        function hd() {
+            document.getElementById("l1").style.zIndex = 2
+
+        }
+    </script>
+
+</body>
+</html>
+

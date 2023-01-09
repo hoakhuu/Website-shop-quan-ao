@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QUANLY_QUANAOModelStoreContainer" CdmEntityContainer="QUANLY_QUANAOEntities">
+    <EntitySetMapping Name="BRAND">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.BRAND">
+        <MappingFragment StoreEntitySet="BRAND">
+          <ScalarProperty Name="MaBrand" ColumnName="MaBrand" />
+          <ScalarProperty Name="TenBrand" ColumnName="TenBrand" />
+          <ScalarProperty Name="HinhMH" ColumnName="HinhMH" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BUYER">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.BUYER">
+        <MappingFragment StoreEntitySet="BUYER">
+          <ScalarProperty Name="MaBuyer" ColumnName="MaBuyer" />
+          <ScalarProperty Name="TenBuyer" ColumnName="TenBuyer" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="MaLogin" ColumnName="MaLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CART">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.CART">
+        <MappingFragment StoreEntitySet="CART">
+          <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="MaGioHang" ColumnName="MaGioHang" />
+          <ScalarProperty Name="MaBuyer" ColumnName="MaBuyer" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CATEGORY">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.CATEGORY">
+        <MappingFragment StoreEntitySet="CATEGORY">
+          <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+          <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+          <ScalarProperty Name="HinhMH" ColumnName="HinhMH" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DELIVERY">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.DELIVERY">
+        <MappingFragment StoreEntitySet="DELIVERY">
+          <ScalarProperty Name="MaThanhToan" ColumnName="MaThanhToan" />
+          <ScalarProperty Name="PTThanhToan" ColumnName="PTThanhToan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOGINS">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.LOGINS">
+        <MappingFragment StoreEntitySet="LOGINS">
+          <ScalarProperty Name="MaLogin" ColumnName="MaLogin" />
+          <ScalarProperty Name="TenLogin" ColumnName="TenLogin" />
+          <ScalarProperty Name="MatKhauLogin" ColumnName="MatKhauLogin" />
+          <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MANAGE">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.MANAGE">
+        <MappingFragment StoreEntitySet="MANAGE">
+          <ScalarProperty Name="MaQL" ColumnName="MaQL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MESSAGE">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.MESSAGE">
+        <MappingFragment StoreEntitySet="MESSAGE">
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="ThoiGianNhan" ColumnName="ThoiGianNhan" />
+          <ScalarProperty Name="MaQL" ColumnName="MaQL" />
+          <ScalarProperty Name="MaBuyer" ColumnName="MaBuyer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDER_DETAILS">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.ORDER_DETAILS">
+        <MappingFragment StoreEntitySet="ORDER_DETAILS">
+          <ScalarProperty Name="MaSPChiTiet" ColumnName="MaSPChiTiet" />
+          <ScalarProperty Name="MaQL" ColumnName="MaQL" />
+          <ScalarProperty Name="MaGioHang" ColumnName="MaGioHang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCT">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.PRODUCT">
+        <MappingFragment StoreEntitySet="PRODUCT">
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="Hinh1" ColumnName="Hinh1" />
+          <ScalarProperty Name="Hinh2" ColumnName="Hinh2" />
+          <ScalarProperty Name="Hinh3" ColumnName="Hinh3" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+          <ScalarProperty Name="KichThuoc1" ColumnName="KichThuoc1" />
+          <ScalarProperty Name="KichThuoc2" ColumnName="KichThuoc2" />
+          <ScalarProperty Name="KichThuoc3" ColumnName="KichThuoc3" />
+          <ScalarProperty Name="MaQL" ColumnName="MaQL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SELLER">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.SELLER">
+        <MappingFragment StoreEntitySet="SELLER">
+          <ScalarProperty Name="MaSeller" ColumnName="MaSeller" />
+          <ScalarProperty Name="TenSeller" ColumnName="TenSeller" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="MaLogin" ColumnName="MaLogin" />
+          <ScalarProperty Name="MaQL" ColumnName="MaQL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="QUANLY_QUANAOModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PAYMENT_METHOD" TypeName="QUANLY_QUANAOModel.PAYMENT_METHOD" StoreEntitySet="PAYMENT_METHOD">
+      <EndProperty Name="DELIVERY">
+        <ScalarProperty Name="MaThanhToan" ColumnName="MaThanhToan" />
+      </EndProperty>
+      <EndProperty Name="PRODUCT">
+        <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

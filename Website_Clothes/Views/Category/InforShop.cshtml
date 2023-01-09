@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Website_Clothes.Models.inforShop>
+
+@{
+    Layout = "~/Views/Shared/_LayoutProduct.cshtml";
+
+}
+
+
+@section inforshop
+{
+    <p style="font-size: 15px; font-weight: 300; color: #3D8361 ">Shop liên quan đến: <span style="color:red " id="sr"> @ViewBag.tk</span></p>
+    <div style="width:340px; height:84px; border:2px solid pink; border-radius:10px">
+        @{
+           
+            foreach (var item in Model)
+            {
+                <img height="80px" width="80px" src="@Url.Content("~/Picture/"+item.Avt)" style="float:left; border-radius:50%" />
+                <h8 style="float:left; color:palevioletred; font-size:10; font-weight:500; margin-top:10px"> <span style="color:black">SHOP:</span>  @item.Tenshop</h8><br />
+                <p style=" color:black; font-size:10; font-weight:200; float:left"> @item.Sl Sản phẩm</p>
+                break;
+            }
+
+
+
+        }
+    </div>
+
+    <div style="clear:both"></div>
+
+    @Html.Action("ShowProduct", "Product")
+
+}

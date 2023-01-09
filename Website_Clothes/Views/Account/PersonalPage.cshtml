@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Website_Clothes.Models.PersonalP>
+@using Website_Clothes.Models
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_LayoutProDetail.cshtml";
+    LOGIN lg = Session["lg"] as LOGIN;
+
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 " style="background-color:#FFEFD6">
+
+            @{
+                foreach (var item in Model)
+                {
+                    <img height="100px" width="100px" style="border-radius:50%; margin-left:80px; margin-top:20px" src="@Url.Content("~/Picture/" + item.Hinh)" /><br />
+
+
+                    <p style="font-weight:700; text-align:center "> @item.Ten1</p>
+
+                    <p style="font-weight:700;  "><span style="color:red">Số điện thoại:</span> @item.Sdt</p>
+                    <p style="font-weight:700;  "><span style="color:red">Địa chỉ:</span> @item.Diachi</p>
+                }
+
+            }
+
+            @if (lg.VaiTro == "buyer")
+            {
+
+                <a href="@Url.Action("LichSuMuaHang", "GioHang")"><p style="font-weight: 600; color: #ff6a00; text-decoration: none ">Đơn Mua</p></a>
+                <a href="@Url.Action("PersonalCart", "GioHang")"><p style="font-weight: 600; color: #ff6a00; text-decoration: none ">Giỏ Hàng</p></a>
+
+            }
+            else
+            {
+                <a href="#"><p style="font-weight: 600; color: #ff6a00; text-decoration: none ">Cửa hàng</p></a>
+                <a href="@Url.Action("ThongBaoDonHang","MyShop")"><p style="font-weight: 600; color: #ff6a00; text-decoration: none ">Đơn Đặt Hàng</p></a>
+            }
+        </div>
+
+        <div class="col-lg" style="background-color:cornsilk">
+            @if (lg.VaiTro == "buyer")
+            {
+                <h4>Thay Đổi Thông Tin Cá Nhân</h4>
+                <form action="~/Account/Saveinfor" method="get">
+
+                    <label>Họ và Tên:</label>
+
+                    <input type="text" size="40" style="border: 3px solid #ddb3b3; border-radius: 20px; margin-top: 20px" id="sreach" name="hvt" /><br />
+                    <label>Số điện thoại:</label>
+                    <input type="text" size="30" style="border: 3px solid #ddb3b3; border-radius: 20px; margin-top: 20px" id="sreach" name="phone" /><br />
+                    <label>Địa chỉ</label>
+                    <input type="text" size="50" style="border: 3px solid #ddb3b3; border-radius: 20px; margin-top: 20px" id="sreach" name="addr" /><br />
+                    <label>Avatar Buyer:</label> <input type="file" id="myFile" name="filename">
+
+                    <input type="submit" size="10" style="margin-left: 10px; padding: 5px; margin-top: 20px" value="Lưu" />
+                </form>
+            }
+            else if(lg.VaiTro == "seller")
+            {
+
+                @Html.Action("SanPham","MyShop")
+            }
+
+
+
+
+        </div>
+
+    </div>
+

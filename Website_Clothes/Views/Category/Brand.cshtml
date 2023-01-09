@@ -1,0 +1,15 @@
+﻿
+
+@model IEnumerable<Website_Clothes.Models.lbrand>
+
+@{
+
+    foreach (var i in Model)
+    {
+        <div class="card br" style="width: 150px;">
+            <a href="@Url.Action("BrandProduct","Category", new{ @mbrand=i.Mbr})"><img height="120px"  width="150px" class="card-img-top" src="@Url.Content("~/Picture/"+i.Picture)" alt="Card image cap"></a>
+            
+        </div>
+    }
+}
+

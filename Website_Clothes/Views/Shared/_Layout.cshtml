@@ -1,0 +1,382 @@
+﻿@using Website_Clothes.Models
+@{
+    Layout = null;
+    LOGIN lg = Session["lg"] as LOGIN;
+
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LayoutMain</title>
+    <!--Bootstrap 4-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+    <style>
+
+
+        #cll {
+            margin-top: 5px;
+        }
+
+        .cl {
+            float: left;
+            list-style: none;
+            background-color: #E97777;
+        }
+
+            .cl #gio, .cl #phut, .cl #giay {
+                color: white;
+                font-size: 700;
+                text-align: center;
+                padding: 5px;
+                margin-left: 5px
+            }
+        /**/
+        .fs {
+            display: flex;
+        }
+
+        .fs1 {
+            margin: 0 .5em
+        }
+
+        .dm {
+            display: flex;
+        }
+
+        .dm1 {
+            margin: 0 .5em
+        }
+
+        .br {
+            margin: 0 .4em
+        }
+
+        .sp {
+            margin: 0 .8em;
+            margin-top: .7em
+        }
+
+            .sp:hover {
+                margin: 0 .8em;
+                margin-top: .7em;
+                border: 2px solid #ff0000;
+            }
+
+        .show5 {
+            max-height: 190px;
+            max-width: 194px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 " style="background-color: #E97777">
+                <img src="~/Picture/logostore.jpg" height="90px" width="120px" style="float:left" />
+                <p style="float:left; font-size:15px; font-weight:700;text-align:center; margin-top:20px">
+                    ONE HEART <br />
+                    ONLY ONE EARTH
+                </p>
+            </div>
+
+            <div class="col-lg-1" style="background-color: #E97777">
+                <img src="~/Picture/tải_xuống__1_-removebg-preview.jpg" height="30px" width="30px" style="float:left; margin-top:20px" />
+                <p style="float:left; font-size:10px; font-weight:500;text-align:center; margin-top:20px">
+                    Deliver to <br />
+                    Viet Nam
+                </p>
+            </div>
+
+
+            <div class="col-lg-5 " style="background-color: #E97777">
+                <form action="~/Category/InforShop" method="get">
+                    <input type="text" id="sreach" name="sreach" size="50" style="border: 3px solid #ddb3b3; border-radius: 20px; margin-top: 20px; float:left" />
+                    <input type="submit" size="10" style="margin-left: 10px; padding: 5px; margin-top: 20px; float: left" value="Lọc" />
+                </form>
+            </div>
+
+
+            <div class="col-lg " style="background-color: #E97777">
+                @if (lg == null)
+                {
+                    <a href="~/Account/DangNhap" style="color:white">
+                        <img src="~/Picture/5df39a6672dbb485edca-removebg-preview.jpg" height="40px" width="40px" style="float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center; margin-top:23px">
+                            Hello, Sign inb<br />Account
+                        </p>
+                    </a>
+
+                    <a href="~/Account/DangNhap" style="color:white">
+                        <img src="~/Picture/download-removebg-preview.jpg" height="30px" width="30px" style="margin-left:30px;float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center;margin-left:10px; margin-top:29px">
+                            Cart
+                        </p>
+                    </a>
+                }
+                else if (lg.VaiTro == "buyer")
+                {
+                    <a href="~/Account/PersonalPage">
+                        <img src="@Url.Content("~/Picture/" + lg.AVT)" height="50px" width="50px" style="float:left; margin-top:20px; border-radius:50%" />
+                        <p style="float:left; font-size:15px; font-weight:500;text-align:center; margin-top:27px">
+                            Hello,<br />@lg.TenLogin
+                        </p>
+                    </a>
+                    <a href="@Url.Action("PersonalCart","GioHang")" style="color:white">
+                        <img src="~/Picture/download-removebg-preview.jpg" height="30px" width="30px" style="margin-left:30px;float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center;margin-left:10px; margin-top:29px">
+                            Cart <span style="height: 30px; width: 30px; border-radius: 10%; padding: 5px; background-color: orangered"> @Html.Action("TongSL", "GioHang")</span>
+                        </p>
+                    </a>
+                    <a href="@Url.Action("DangNhap","Account")"><img height="20px" width="20px" style="margin-top:25px" src="~/Picture/dan.png" /></a>
+
+                }
+                else if (lg.VaiTro == "seller")
+                {
+                    <a href="~/Account/PersonalPage">
+                        <img src="@Url.Content("~/Picture/" + lg.AVT)" height="50px" width="50px" style="float:left; margin-top:20px; border-radius:50%" />
+                        <p style="float:left; font-size:15px; font-weight:500;text-align:center; margin-top:27px">
+                            Shop,<br />@lg.TenLogin
+                        </p>
+                    </a>
+                    <a href="@Url.Action("ThongBaoDonHang","MyShop")" style="color:white">
+                        <img src="~/Picture/thongbao.jpg" height="30px" width="30px" style="margin-left:30px;float:left; margin-top:20px" />
+                        <p style="float:left; font-size:10px; font-weight:500;text-align:center;margin-left:10px; margin-top:29px">
+                            Thông báo <span style="height: 30px; width: 30px; border-radius: 10%; padding: 5px; background-color: orangered">@Html.Action("TongTB", "MyShop") </span>
+                        </p>
+                    </a>
+                    <a href="@Url.Action("DangNhap","Account")"><img height="20px" width="20px" style="margin-top:25px" src="~/Picture/dan.png" /></a>
+                }
+
+
+
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="container" style="height:400px">
+        <div class="row">
+            <div class="col-lg-9 ">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" height="400px" src="~/Picture/imager_26_118140_700.jpg" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" height="400px" src="~/Picture/tieu-de-banner-thoi-trang.jpg" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" height="400px" src="~/Picture/0df8f0fbd8471e194756.jpg" alt="Third slide">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @**@
+
+            <div class="col-lg-3" style="height: 400px; background-image: url('../Picture/sefef.jpg'); background-size: cover ">
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-lg-2 " style="">
+                <p style="background-color: #FF9F9F; border: 3px solid Pink; padding: 5px; text-align: center; font-weight: 700; border-radius: 20px ">Flash sale</p>
+                <img src="../Picture/cd68d61274aeb2f0ebbf-removebg-preview.jpg" height="70px" width=70px" style="margin-left:35px" />
+            </div>
+
+            <div class="col-lg-2 ">
+                <p style="background-color: #FF9F9F; border: 2px solid Pink; padding: 5px; text-align: center; font-weight: 700; border-radius: 20px ">Deliver</p>
+                <img src="../Picture/dfgdfg.jpg" height="70px" width=80px" style="margin-left:35px" />
+            </div>
+
+            <div class="col-lg-2">
+                <p style="background-color: #FF9F9F; border: 2px solid Pink; padding: 5px; text-align: center; font-weight: 700; border-radius: 20px ">Hoàn xu</p>
+                <img src="../Picture/download-removebg-preview (4).jpg" height="70px" width=70px" style="margin-left:35px" />
+            </div>
+
+            <div class="col-lg-2">
+                <p style="background-color: #FF9F9F; border: 2px solid Pink; padding: 5px; text-align: center; font-weight: 700; border-radius: 20px ">Hàng new</p>
+                <img src="../Picture/download-removebg-preview (5).jpg" height="70px" width=80px" style="margin-left:35px" />
+            </div>
+
+
+            <div class="col-lg-2 ">
+                <p style="background-color: #FF9F9F; border: 2px solid Pink; padding: 5px; text-align: center; font-weight: 700; border-radius: 20px ">Quốc tế</p>
+                <img src="../Picture/fdgdfg.jpg" height="70px" width=70px" style="margin-left:35px" />
+            </div>
+
+            <div class="col-lg-2 ">
+                <p style="background-color: #FF9F9F; border: 2px solid Pink; padding: 5px; text-align: center; font-weight: 700; border-radius: 20px ">Nạp thẻ</p>
+                <img src="../Picture/bank-cards-icon-12-256.jpg" height="70px" width=80px" style="margin-left:35px" />
+            </div>
+
+
+        </div>
+    </div>
+
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg" style="height: 100px; background-image: url('../Picture/sdff.jpg'); background-size: 1140px 100px; border-radius:20px">
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <p style="font-size: 24px; font-weight: 500; color: #FF9F9F ">Danh mục sản phẩm</p>
+            </div>
+        </div>
+    </div>
+    @Html.Action("DanhMuc", "Category")
+
+
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <p style="font-size: 24px; font-weight: 500; color: #FF9F9F ">Thương hiệu nổi bật</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container" style="background-color: #EAEAEA">
+        <div class="row">
+            @Html.Action("Brand", "Category")
+        </div>
+
+    </div>
+
+
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <p style="float:left;font-size: 24px; font-weight: 500; color: #FF9F9F ">Chương trình khuyến mãi</p>
+
+                <ul id="cll" style="float:left">
+                    <li class="cl">
+                        <span id="gio"><b>00</b></span><span style="color: white; font-size:500;">&nbsp &nbsp<b>:</b></span>
+                    </li>
+
+                    <li class="cl">
+                        <span id="phut"><b>00</b></span><span style="color: white; font-size: 500;">&nbsp &nbsp<b>:</b></span>
+                    </li>
+
+                    <li class="cl">
+                        <span id="giay"><b>00</b></span><span style="color: white; font-size: 500;"></span>
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function Dong_ho() {
+            var gio = document.getElementById("gio");
+            var phut = document.getElementById("phut");
+            var giay = document.getElementById("giay");
+            var Gio_hien_tai = new Date().getHours();
+            var Phut_hien_tai = new Date().getMinutes();
+            var Giay_hien_tai = new Date().getSeconds();
+            gio.innerHTML = Gio_hien_tai;
+            phut.innerHTML = Phut_hien_tai;
+            giay.innerHTML = Giay_hien_tai;
+        }
+        var Dem_gio = setInterval(Dong_ho, 1000);
+    </script>
+
+
+
+    <div class="container">
+        @Html.Action("FlashSale", "Category")
+
+    </div>
+
+
+
+
+
+
+    <br />
+    <hr style="border: 2px solid #E97777;width: 1100px;">
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 ">
+                <img width="340px" height="100px" style="border-radius:20px" src="../Picture/da03c5ae9ae543bb1af4.jpg" />
+
+            </div>
+
+            <div class="col-lg-4 ">
+                <img width="340px" height="100px" style="border-radius:20px" src="../Picture/shopping-online-on-phone-paper-art-modern-pink-background-gifts-box-free-vector.jpg" />
+
+            </div>
+
+            <div class="col-lg-4">
+                <img width="340px" height="100px" style="border-radius:20px" src="../Picture/erer.jpg" />
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <p style="font-size: 24px; font-weight: 500; color: #FF9F9F ">Dành riêng cho bạn</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="background-color: #EAEAEA">
+        @Html.Action("Random10SP", "Product")
+    </div>
+
+
+    <div style="clear:both">
+
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5"> </div>
+            <div class="col-lg-2"><button type="button" class="btn btn-outline-light" style="color:#E97777">@Html.ActionLink("Xem Thêm", "InforShop", "Category")</button> </div>
+            <div class="col-lg-5"> </div>
+        </div>
+
+    </div>
+
+    @RenderBody();
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@using Website_Clothes.Models
+@model List<PRODUCT>
+
+@{
+    Layout = "~/Views/Shared/_LayoutProduct.cshtml";
+
+}
+
+
+@section inforshop
+{
+
+    @{
+        <p style="font-size: 15px; font-weight: 300; color: #c5c5c5 ">Sản phẩm liên quan : </p>
+        int q = 0;
+        foreach (var i in Model)
+        {
+            if (q % 4 == 0)
+            {
+                <a href="@Url.Action("ProductDetail","Product", new{ @masppp=i.MaSP})">
+                    <div class="card sp" style="width: 195px; height:280PX; float:left; margin-left:0px; margin-top:10px">
+                        <div id="show5" style="padding:1px">
+                            <img height="195px" width="190px" src="@Url.Content("~/Picture/" + i.Hinh1)">
+                        </div>
+                        <div class="card-body">
+                            @if (i.TenSP.Length > 49)
+                            {
+                                <P class="card-title" style="font-size:10px;font-weight:700; text-align:left; margin:0 0">  @i.TenSP.Substring(0, 49)... </P>
+                            }
+                            else
+                            {
+                                <P class="card-title" style="font-size:10px;font-weight:700; text-align:left; margin:0 0">  @i.TenSP </P>
+                            }
+                            <p class="card-text bg-danger" style="color:aliceblue; font-size:13px; font-weight:900;text-align:center">@i.DonGia</p>
+
+
+                        </div>
+                    </div>
+                </a>
+            }
+            else
+            {
+
+                <a href="@Url.Action("ProductDetail","Product", new{ @masppp=i.MaSP})">
+                    <div class="card sp" style="width: 195px; height:280PX; float:left; margin-left:25px; margin-top:10px">
+                        <div id="show5" style="padding:1px">
+                            <img height="195px" width="190px" src="@Url.Content("~/Picture/" + i.Hinh1)">
+                        </div>
+                        <div class="card-body">
+                            @if (i.TenSP.Length > 49)
+                            {
+                                <P class="card-title" style="font-size:10px;font-weight:700; text-align:left; margin:0 0">  @i.TenSP.Substring(0, 49)... </P>
+                            }
+                            else
+                            {
+                                <P class="card-title" style="font-size:10px;font-weight:700; text-align:left; margin:0 0">  @i.TenSP </P>
+                            }
+                            <p class="card-text bg-danger" style="color:aliceblue; font-size:13px; font-weight:900;text-align:center">@i.DonGia</p>
+
+
+                        </div>
+                    </div>
+                    </a>
+                    }
+                    q++;
+
+
+                    }
+                    }
+
+
+                    }

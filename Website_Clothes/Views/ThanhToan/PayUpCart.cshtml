@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Website_Clothes.Models.cart>
+
+@{
+    foreach (var item in Model)
+    {
+        <div>
+            <img height="55px" width="55px" style="float:left" src="@Url.Content("~/Picture/" + item.Hinh)" />
+            <div style="float:left">
+                @if (item.Ten.Length > 25)
+                {
+                    <p><span style="color:orangered; font-weight:700; font-size:10px">[NOW FREE]</span> @item.Ten.Substring(0, 25)...</p>
+
+                }
+                else
+                {
+                    <p><span style="color: orangered; font-weight: 700; font-size: 10px">[NOW FREE]</span> @item.Ten</p>
+                }
+
+                <p style="font-size:10px">SL: @item.Sl - Size: @item.Size &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="color:orange; font-weight:700">Thành tiền: @item.Tong</span></p>
+                <div style="clear:both"></div>
+            </div>
+
+            <br />
+
+            <div style="clear:both"></div>
+        </div>
+        <hr style="color:dimgray;" />
+    }
+}
+
+
